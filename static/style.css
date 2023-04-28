@@ -1,0 +1,44 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #faf1f1;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    color: #000;
+}
+
+.form-control {
+    border: 1px solid #333;
+}
+
+.table {
+    background-color: #fff;
+}
+
+.table th {
+    background-color: #000;
+    color: #faf1f1;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9e9e9;
+}
+
+.table-striped tbody tr:hover {
+    background-color: #f0d7d7;
+}
+
+.btn-primary {
+    background-color: #000;
+    border-color: #333;
+}

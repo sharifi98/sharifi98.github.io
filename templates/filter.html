@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Filter Scholarships</h1>
+
+<form method="POST" action="{{ url_for('filter') }}">
+    {% csrf_token %}
+
+    <!-- Include the dropdown menus from the 'dropdowns.html' file -->
+    {% include 'dropdowns.html' %}
+
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+{% if data %}
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Scholarship ID</th>
+            <th>Scholarship name</th>
+            <th>Scholarship opens</th>
+            <th>Scholarship closes</th>
+            <th>Maximum age requirement</th>
+            <th>All can apply</th>
+            <th>Gender requirement</th>
+            <th>Exchange studies</th>
+            <th>Union selector</th>
+            <th>School selector</th>
+            <th>Municipality selector</th>
+            <th>Thesis selector</th>
+            <th>Other information</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+            <td>{{ row[7] }}</td>
+            <td>{{ row[8] }}</td>
+            <td>{{ row[9] }}</td>
+            <td>{{ row[10] }}</td>
+            <td>{{ row[11] }}</td>
+            <td>{{ row[12] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}

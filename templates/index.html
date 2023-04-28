@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Scholarship Database</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Scholarship Database</h1>
+        <form action="/filter" method="POST">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="all_can_apply">All can apply:</label>
+                        <select name="all_can_apply" id="all_can_apply" class="form-control">
+                            <option value="">-- Any --</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="gender_requirement">Gender requirement:</label>
+                        <select name="gender_requirement" id="gender_requirement" class="form-control">
+                            <option value="">-- Any --</option>
+                            <option value="Men">Men</option>
+                            <option value="Women">Women</option>
+                            <option value="None">None</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="exchange_studies">Exchange studies:</label>
+                        <select name="exchange_studies" id="exchange_studies" class="form-control">
+                            <option value="">-- Any --</option>
+                            <option value="USA">USA</option>
+                            <option value="UK">UK</option>
+                            <option value="France">France</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Spain">Spain</option>
+                            <option value="All">All</option>
+                            <option value="None">None</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="union_selector">Union selector:</label>
+                        <select name="union_selector" id="union_selector" class="form-control">
+                            <option value="">-- Any --</option>
+                            <option value="LO">LO</option>
+                            <option value="Lärarnas Riksförbund">Lärarnas Riksförbund</option>
+                            <option value="Saco">Saco</option>
+                            <option value="TCO">TCO</option>
+                            <option value="None">None</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="school_selector">School selector:</label>
+                        <select name="school_selector" id="school_selector" class="form-control">
+                            <option value="">-- Any --</option>
+                            <option value="Lunds universitet">Lunds universitet</option>
+                            <option value="Kungliga Tekniska Högskolan">Kungliga Tekniska Högskolan</option>
+                            <option value="Göteborgs universitet">Göteborgs universitet</option>
+                            <option value="Uppsala universitet">Uppsala universitet</option>
+                            <option value="Linköpings universitet">Linköpings universitet</option>
+                            <option value="None">None</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="municipality_selector">Municipality selector:</label>
+                        <select name="municipality_selector" id="municipality_selector" class="form-control">
+                            <option value="">-- Any --</option>
+                            <option value="Stockholm kommun">Stockholm kommun</option>
+                            <option value="Göteborgs stad">Göteborgs stad</option>
+                            <option value="Malmö stad">Malmö stad</option>
+                            <option value="Uppsala kommun">Uppsala kommun</option>
+                            <option value="Västerås stad">Västerås stad</option>
+                            <option value="None">None</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="thesis_selector">Thesis selector:</label>
+                        <select name="thesis_selector" id="thesis_selector" class="form-control">
+                            <option value="">-- Any --</option>
+                            <option value="IdroUsforskning">IdroUsforskning</option>
+                            <option value="Pension och sparande">Pension och sparande</option>
+                            <option value="Miljöteknik">Miljöteknik</option>
+                            <option value="Medicinsk forskning">Medicinsk forskning</option>
+                            <option value="None">None</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary" style="margin-top:25px;">Filter Scholarships</button>
+                </div>
+            </div>
+        </form>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Scholarship ID</th>
+                    <th>Scholarship name</th>
+                    <th>Scholarship opens</th>
+                    <th>Scholarship closes</th>
+                    <th>Maximum age requirement</th>
+                    <th>All can apply</th>
+                    <th>Gender requirement</th>
+                    <th>Exchange studies</th>
+                    <th>Union selector</th>
+                    <th>School selector</th>
+                    <th>Municipality selector</th>
+                    <th>Thesis selector</th>
+                    <th>Other information</th>
+                </tr>
+            </thead>
+            <tbody> {% for row in data %} <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[6] }}</td>
+                    <td>{{ row[7] }}</td>
+                    <td>{{ row[8] }}</td>
+                    <td>{{ row[9] }}</td>
+                    <td>{{ row[10] }}</td>
+                    <td>{{ row[11] }}</td>
+                    <td>{{ row[12] }}</td>
+                </tr> {% endfor %} </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
